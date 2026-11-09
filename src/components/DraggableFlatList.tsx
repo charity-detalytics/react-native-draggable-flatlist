@@ -10,7 +10,6 @@ import {
   ListRenderItem,
   FlatListProps,
   LayoutChangeEvent,
-  InteractionManager,
 } from "react-native";
 import {
   FlatList,
@@ -119,7 +118,7 @@ function DraggableFlatListInner<T>(props: DraggableFlatListProps<T>) {
   if (dataHasChanged) {
     // When data changes make sure `activeKey` is nulled out in the same render pass
     activeKey = null;
-    InteractionManager.runAfterInteractions(() => {
+    requestAnimationFrame(() => {
       reset();
     });
   }
